@@ -26,7 +26,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full sticky top-0 z-50 bg-gradient-animated border-b border-gray-700 overflow-x-hidden">
+    <header className="w-full sticky top-0 z-50 overflow-x-hidden backdrop-blur-xl backdrop-saturate-150 bg-gradient-animated/70 border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] rounded-b-3xl">
       <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-3">
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col">
@@ -66,7 +66,7 @@ export default function Header() {
                 <Icon name="chevron-down" className="w-3 h-3 flex-shrink-0" />
               </div>
               {languageMenuOpen && (
-                <div className="absolute top-full mt-2 right-0 bg-aimy-background border border-aimy-text-white rounded-[12px] shadow-lg z-50 min-w-[120px]">
+                <div className="absolute top-full mt-2 right-0 backdrop-blur-xl backdrop-saturate-150 bg-aimy-background/70 border border-white/20 rounded-[12px] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] z-50 min-w-[120px]">
                   <button
                     onClick={() => {
                       setLanguage('ru');
