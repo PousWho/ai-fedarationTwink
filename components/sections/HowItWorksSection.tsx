@@ -44,7 +44,7 @@ export default function HowItWorksSection() {
     <section 
       ref={sectionRef}
       id="how-it-works" 
-      className="w-full bg-aimy-background"
+      className="w-full relative"
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-20">
         <div className={`mb-16 transition-all duration-1000 ease-out ${
@@ -59,17 +59,22 @@ export default function HowItWorksSection() {
           {steps.slice(0, 3).map((step, index) => (
             <div
               key={step.number}
-              className={`transition-all duration-700 ease-out ${
+              className={`transition-transform duration-700 ease-out ${
                 isVisible 
-                  ? 'opacity-100 translate-y-0 scale-100' 
-                  : 'opacity-0 translate-y-10 scale-95'
+                  ? 'translate-y-0 scale-100' 
+                  : 'translate-y-10 scale-95'
               }`}
               style={{
                 transitionDelay: isVisible ? `${200 + index * 150}ms` : '0ms',
               }}
             >
               <Bubble className="border border-aimy-accent bg-[#A057FF1A]">
-                <div className="text-center">
+                <div className={`text-center transition-opacity duration-700 ease-out ${
+                  isVisible ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{
+                  transitionDelay: isVisible ? `${200 + index * 150}ms` : '0ms',
+                }}>
                   <div className="mb-4" aria-hidden="true">
                     <span className="text-aimy-accent text-heading font-bounded">{step.number}</span>
                   </div>
@@ -83,17 +88,22 @@ export default function HowItWorksSection() {
           {steps.slice(3, 5).map((step, index) => (
             <div
               key={step.number}
-              className={`transition-all duration-700 ease-out ${
+              className={`transition-transform duration-700 ease-out ${
                 isVisible 
-                  ? 'opacity-100 translate-y-0 scale-100' 
-                  : 'opacity-0 translate-y-10 scale-95'
+                  ? 'translate-y-0 scale-100' 
+                  : 'translate-y-10 scale-95'
               }`}
               style={{
                 transitionDelay: isVisible ? `${650 + index * 150}ms` : '0ms',
               }}
             >
               <Bubble className="border border-aimy-accent bg-[#A057FF1A]">
-                <div className="text-center">
+                <div className={`text-center transition-opacity duration-700 ease-out ${
+                  isVisible ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{
+                  transitionDelay: isVisible ? `${650 + index * 150}ms` : '0ms',
+                }}>
                   <div className="mb-4" aria-hidden="true">
                     <span className="text-aimy-accent text-heading font-bounded">{step.number}</span>
                   </div>

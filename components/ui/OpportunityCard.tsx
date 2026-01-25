@@ -20,8 +20,8 @@ export default function OpportunityCard({
   const displayItems = items || (description ? [description] : []);
 
   return (
-    <article className={cn('bg-transparent p-6', className)}>
-      <div className="flex items-start gap-4 mb-3">
+    <article className={cn('bg-transparent p-4 sm:p-6 w-full min-w-0', className)}>
+      <div className="flex items-start gap-3 sm:gap-4 mb-3 min-w-0">
         {icon && (
           <div className="flex-shrink-0">
             <div className="w-11 h-11 bg-aimy-purple rounded flex items-center justify-center">
@@ -39,7 +39,7 @@ export default function OpportunityCard({
             </div>
           </div>
         )}
-        <h3 className="text-subheading text-aimy-purple font-bounded font-normal flex-1">
+        <h3 className="text-subheading text-aimy-accent font-bounded font-normal flex-1 break-words min-w-0">
           {title}
         </h3>
       </div>

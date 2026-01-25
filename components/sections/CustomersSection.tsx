@@ -35,7 +35,7 @@ export default function CustomersSection() {
     <section 
       ref={sectionRef}
       id="customers" 
-      className="w-full bg-aimy-background"
+      className="w-full relative"
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-20">
         <div className={`mb-16 transition-all duration-1000 ease-out ${
@@ -50,17 +50,22 @@ export default function CustomersSection() {
           {CUSTOMERS.map((customer, index) => (
             <div
               key={index}
-              className={`transition-all duration-700 ease-out ${
+              className={`transition-transform duration-700 ease-out ${
                 isVisible 
-                  ? 'opacity-100 translate-y-0 scale-100' 
-                  : 'opacity-0 translate-y-10 scale-95'
+                  ? 'translate-y-0 scale-100' 
+                  : 'translate-y-10 scale-95'
               }`}
               style={{
                 transitionDelay: isVisible ? `${200 + index * 100}ms` : '0ms',
               }}
             >
               <Bubble>
-                <p className="text-body text-aimy-text-white font-guidy text-center">
+                <p className={`text-body text-aimy-text-white font-guidy text-center transition-opacity duration-700 ease-out ${
+                  isVisible ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{
+                  transitionDelay: isVisible ? `${200 + index * 100}ms` : '0ms',
+                }}>
                   {customer}
                 </p>
               </Bubble>

@@ -48,7 +48,7 @@ export default function FAQSection() {
     <section 
       ref={sectionRef}
       id="faq" 
-      className="w-full bg-aimy-background"
+      className="w-full relative"
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-20">
         <div className={`mb-12 transition-all duration-1000 ease-out ${

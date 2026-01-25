@@ -36,7 +36,7 @@ export default function PricingSection() {
     <section 
       ref={sectionRef}
       id="pricing" 
-      className="w-full bg-aimy-background"
+      className="w-full relative"
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-20">
         <div className={`mb-12 transition-all duration-1000 ease-out ${
@@ -48,7 +48,7 @@ export default function PricingSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className={`transition-all duration-700 ease-out ${
+          <div className={`transition-all duration-700 ease-out h-full flex ${
             isVisible 
               ? 'opacity-100 translate-x-0 scale-100' 
               : 'opacity-0 -translate-x-10 scale-95'
@@ -56,11 +56,11 @@ export default function PricingSection() {
           style={{
             transitionDelay: isVisible ? '200ms' : '0ms',
           }}>
-            <Button variant="secondary" size="large" className="w-full justify-center rounded-[26px] text-aimy-text-white">
+            <Button variant="secondary" size="large" className="w-full justify-center rounded-[26px] text-aimy-text-white h-full min-h-[80px]">
               {t.pricing.option1}
             </Button>
           </div>
-          <div className={`transition-all duration-700 ease-out ${
+          <div className={`transition-all duration-700 ease-out h-full flex ${
             isVisible 
               ? 'opacity-100 translate-x-0 scale-100' 
               : 'opacity-0 translate-x-10 scale-95'
@@ -68,7 +68,7 @@ export default function PricingSection() {
           style={{
             transitionDelay: isVisible ? '300ms' : '0ms',
           }}>
-            <Button variant="secondary" size="large" className="w-full justify-center rounded-[26px] text-aimy-text-white">
+            <Button variant="secondary" size="large" className="w-full justify-center rounded-[26px] text-aimy-text-white h-full min-h-[80px]">
               {t.pricing.option2}
             </Button>
           </div>

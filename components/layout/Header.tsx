@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import Logo from '@/components/ui/Logo';
+import GooeyNav from '@/components/ui/GooeyNav/GooeyNav';
 import { useLanguage } from '@/lib/LanguageContext';
 import { cn } from '@/lib/utils';
 
@@ -33,26 +34,24 @@ export default function Header() {
             <div className="mb-2">
               <Logo />
             </div>
-            <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8" aria-label="Основная навигация">
-              <Link href="#about" className="text-small text-aimy-text-white hover:opacity-80 transition-opacity font-guidy whitespace-nowrap">
-                {t.nav.about}
-              </Link>
-              <Link href="#features" className="text-small text-aimy-text-white hover:opacity-80 transition-opacity font-guidy whitespace-nowrap">
-                {t.nav.features}
-              </Link>
-              <Link href="#how-it-works" className="text-small text-aimy-text-white hover:opacity-80 transition-opacity font-guidy whitespace-nowrap">
-                {t.nav.howItWorks}
-              </Link>
-              <Link href="#pricing" className="text-small text-aimy-text-white hover:opacity-80 transition-opacity font-guidy whitespace-nowrap">
-                {t.nav.pricing}
-              </Link>
-              <Link href="#faq" className="text-small text-aimy-text-white hover:opacity-80 transition-opacity font-guidy whitespace-nowrap">
-                {t.nav.faq}
-              </Link>
+            <nav className="hidden md:flex items-center" aria-label="Основная навигация">
+              <GooeyNav
+                items={[
+                  { href: '#about', label: t.nav.about },
+                  { href: '#features', label: t.nav.features },
+                  { href: '#how-it-works', label: t.nav.howItWorks },
+                  { href: '#pricing', label: t.nav.pricing },
+                  { href: '#faq', label: t.nav.faq }
+                ]}
+                animationTime={600}
+                particleCount={15}
+                timeVariance={300}
+                initialActiveIndex={0}
+              />
             </nav>
           </div>
 
-          <div className="hidden md:flex items-center space-x-2 lg:space-x-3 xl:space-x-4 flex-shrink-0 pt-1">
+          <div className="hidden md:flex items-center space-x-2 lg:space-x-3 xl:space-x-4 flex-shrink-0 pt-1 flex-wrap gap-2">
             <div className="relative" ref={languageMenuRef}>
               <div 
                 className="flex items-center space-x-1 lg:space-x-2 text-aimy-text-white cursor-pointer whitespace-nowrap" 
@@ -101,7 +100,7 @@ export default function Header() {
             <Button 
               variant="secondary" 
               size="small" 
-              className="whitespace-nowrap text-aimy-text-white"
+              className="whitespace-nowrap text-aimy-text-white text-xs md:text-small"
               onClick={(e) => {
                 e.preventDefault();
                 const contactSection = document.getElementById('contact');
@@ -112,7 +111,7 @@ export default function Header() {
             >
               {t.header.contact}
             </Button>
-            <Button variant="primary" size="small" className="whitespace-nowrap text-aimy-text-white">
+            <Button variant="primary" size="small" className="whitespace-nowrap text-aimy-text-white text-xs md:text-small">
               {t.header.register}
             </Button>
           </div>

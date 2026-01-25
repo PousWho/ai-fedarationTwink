@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import Bubble from '@/components/ui/Bubble';
+import FuzzyText from '@/components/ui/FuzzyText/FuzzyText';
 import { useLanguage } from '@/lib/LanguageContext';
 
 export default function HeroSection() {
@@ -11,13 +11,11 @@ export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    // Используем Intersection Observer для запуска анимации при появлении секции
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
-            // Отключаем observer после первого срабатывания
             observer.disconnect();
           }
         });
@@ -25,13 +23,8 @@ export default function HeroSection() {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
   const benefits = [
@@ -42,29 +35,48 @@ export default function HeroSection() {
   ];
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="hero" 
-      className="w-full relative overflow-hidden bg-aimy-background"
+      id="hero"
+      className="w-full relative overflow-hidden"
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] pt-[120px] pb-0">
+      {/* контент */}
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-[120px] pt-[120px] pb-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="hero-text">
-            <h1 
+            <h1
               className={`text-heading text-aimy-text-white mb-6 font-bounded drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] transition-all duration-1000 ease-out ${
-                isVisible 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 -translate-x-10'
+                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
               }`}
             >
-              {titleLines[0]}<br />{titleLines[1]}
+              {titleLines[0]}<br />
+              {titleLines[1].includes('Aimy') ? (
+                <>
+                  {titleLines[1].split('Aimy')[0]}
+                  <FuzzyText
+                    fontSize="clamp(2rem, 8vw, 6rem)"
+                    fontWeight={900}
+                    fontFamily="Bounded, sans-serif"
+                    color="#FFFFFF"
+                    baseIntensity={0.2}
+                    hoverIntensity={0.5}
+                    fuzzRange={30}
+                    enableHover={true}
+                    className="inline-block align-baseline"
+                    
+                  >
+                    Aimy
+                  </FuzzyText>
+                  {titleLines[1].split('Aimy')[1]}
+                </>
+              ) : (
+                titleLines[1]
+              )}
             </h1>
-            
-            <p 
+
+            <p
               className={`text-body text-aimy-text-white mb-8 font-guidy transition-all duration-1000 ease-out delay-200 ${
-                isVisible 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 -translate-x-10'
+                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
               }`}
             >
               {t.hero.subtitle}
@@ -74,22 +86,21 @@ export default function HeroSection() {
           <div className="hero-benefits">
             <div className="relative flex flex-col items-center space-y-4">
               {benefits.map((benefit, index) => (
-                <div 
+                <div
                   key={index}
-                  className={`flex justify-center transition-all duration-700 ease-out ${
-                    isVisible 
-                      ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-10'
+                  className={`flex justify-center transition-transform duration-700 ease-out ${
+                    isVisible ? 'translate-y-0' : 'translate-y-10'
                   }`}
-                  style={{
-                    transitionDelay: isVisible ? `${benefit.delay}ms` : '0ms',
-                  }}
+                  style={{ transitionDelay: isVisible ? `${benefit.delay}ms` : '0ms' }}
                 >
-                  <Bubble className={`rounded-[40px] ${benefit.width} h-[56px] p-0 flex items-center justify-center`}>
-                    <span className="text-aimy-text-white text-text font-guidy text-center">
+                  <div className={`rounded-[40px] ${benefit.width} h-[56px] p-0 flex items-center justify-center backdrop-blur-xl backdrop-saturate-150 bg-white/10 border border-white/30 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] hover:bg-white/15 transition-all duration-300`}>
+                    <span className={`text-aimy-text-white text-text font-guidy text-center transition-opacity duration-700 ease-out ${
+                      isVisible ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    style={{ transitionDelay: isVisible ? `${benefit.delay}ms` : '0ms' }}>
                       {benefit.text}
                     </span>
-                  </Bubble>
+                  </div>
                 </div>
               ))}
             </div>

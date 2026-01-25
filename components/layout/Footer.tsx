@@ -10,7 +10,7 @@ export default function Footer() {
   const taglineLines = t.footer.tagline.split('\n');
 
   return (
-    <footer className="w-full bg-gradient-animated border-t border-aimy-text-white border-opacity-20">
+    <footer className="w-full relative overflow-x-hidden backdrop-blur-xl backdrop-saturate-150 bg-gradient-animated/70 border-t border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] rounded-t-3xl">
       <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1">

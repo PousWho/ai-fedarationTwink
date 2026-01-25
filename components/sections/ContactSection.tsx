@@ -30,7 +30,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="w-full bg-aimy-background relative overflow-hidden">
+    <section id="contact" className="w-full relative overflow-hidden">
       <div className="relative max-w-[1440px] mx-auto px-6 md:px-[120px] py-20">
         <div className="mb-12">
           <h2 className="text-heading text-aimy-text-white mb-4 font-bounded">
@@ -38,7 +38,7 @@ export default function ContactSection() {
           </h2>
         </div>
         
-        <div className="w-[1200px] h-[562px] border border-aimy-text-white rounded-[12px] p-8 relative overflow-hidden">
+        <div className="w-full max-w-[1200px] min-h-[562px] border border-aimy-text-white rounded-[12px] p-6 md:p-8 relative overflow-hidden">
           <div className="absolute inset-0 z-0">
             <Image
               src="/images/9d758133354647b4de6ba7d09a4ce388f3b4d4c6.png"
@@ -82,14 +82,14 @@ export default function ContactSection() {
               required
             />
             
-            <div className="flex items-start">
+            <div className="flex items-start gap-2">
               <input 
                 type="checkbox" 
                 id="privacy" 
-                className="mt-1 mr-2 w-4 h-4 accent-aimy-accent"
+                className="mt-1 w-4 h-4 accent-aimy-accent flex-shrink-0"
                 required
               />
-              <label htmlFor="privacy" className="text-small text-aimy-text-white font-guidy">
+              <label htmlFor="privacy" className="text-small text-aimy-text-white font-guidy break-words">
                 {t.contact.privacy} <a href="#" className="underline hover:opacity-80">{t.contact.privacyLink}</a> {t.contact.privacyText}
               </label>
             </div>
@@ -105,7 +105,7 @@ export default function ContactSection() {
         {showScrollTop && (
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="fixed bottom-8 right-8 w-12 h-12 bg-aimy-button-primary rounded-full flex items-center justify-center hover:bg-aimy-button-primary-hover transition-all z-50 shadow-lg"
+            className="fixed bottom-8 right-8 w-12 h-12 backdrop-blur-xl backdrop-saturate-150 bg-aimy-button-primary/80 rounded-full flex items-center justify-center hover:bg-aimy-button-primary/90 transition-all z-50 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
             aria-label="Прокрутить наверх"
           >
             <Icon name="arrow-up" className="w-6 h-6 text-aimy-text-white" />

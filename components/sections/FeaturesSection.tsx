@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import OpportunityCard from '@/components/ui/OpportunityCard';
 import SectionDivider from './SectionDivider';
+import ElectricBorder from '@/components/ui/ElectricBorder/ElectricBorder';
 import { useLanguage } from '@/lib/LanguageContext';
 
 export default function FeaturesSection() {
@@ -45,10 +46,10 @@ export default function FeaturesSection() {
     <section 
       ref={sectionRef}
       id="features" 
-      className="w-full bg-aimy-background"
+      className="w-full relative"
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-20">
-        <div className={`mb-16 transition-all duration-1000 ease-out ${
+      <div className="max-w-[1440px] mx-auto px-0 sm:px-4 md:px-[120px] py-12 sm:py-16 md:py-20">
+        <div className={`px-4 sm:px-6 mb-8 sm:mb-12 md:mb-16 transition-all duration-1000 ease-out ${
           isVisible 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 -translate-y-10'
@@ -56,27 +57,44 @@ export default function FeaturesSection() {
           <SectionDivider label={t.features.title} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className={`transition-all duration-700 ease-out ${
-                isVisible 
-                  ? 'opacity-100 translate-y-0 scale-100' 
-                  : 'opacity-0 translate-y-10 scale-95'
-              }`}
-              style={{
-                transitionDelay: isVisible ? `${200 + index * 100}ms` : '0ms',
-              }}
-            >
-              <OpportunityCard
-                icon={feature.icon}
-                title={feature.title}
-                items={feature.items}
-              />
+        {/* Контейнер с эффектом жидкого стекла и электрическим бордером */}
+        <ElectricBorder
+          color="#61F1F0"
+          speed={1}
+          chaos={0.12}
+          borderRadius={24}
+          className="mx-auto w-full sm:px-4 md:max-w-[95%] md:mx-auto backdrop-blur-xl backdrop-saturate-150 bg-white/10 rounded-none sm:rounded-[16px] md:rounded-[24px] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] overflow-hidden"
+        >
+          <div className="p-4 sm:p-6 md:p-8 lg:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className={`w-full transition-transform duration-700 ease-out ${
+                  isVisible 
+                    ? 'translate-y-0 scale-100' 
+                    : 'translate-y-10 scale-95'
+                }`}
+                style={{
+                  transitionDelay: isVisible ? `${200 + index * 100}ms` : '0ms',
+                }}
+              >
+                <OpportunityCard
+                  icon={feature.icon}
+                  title={feature.title}
+                  items={feature.items}
+                  className={`w-full transition-opacity duration-700 ease-out ${
+                    isVisible ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  style={{
+                    transitionDelay: isVisible ? `${200 + index * 100}ms` : '0ms',
+                  }}
+                />
+              </div>
+            ))}
             </div>
-          ))}
-        </div>
+          </div>
+        </ElectricBorder>
       </div>
     </section>
   );

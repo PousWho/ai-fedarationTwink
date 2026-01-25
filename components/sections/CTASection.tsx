@@ -35,7 +35,7 @@ export default function CTASection() {
     <section 
       ref={sectionRef}
       id="cta" 
-      className="w-full bg-aimy-background"
+      className="w-full relative"
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-20">
         <div className={`text-center mb-8 transition-all duration-1000 ease-out ${
