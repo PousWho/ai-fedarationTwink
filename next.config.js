@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    domains: ['figma.com'],
+  output: 'export',
+  basePath: '/ai-fedarationTwink',
+  assetPrefix: '/ai-fedarationTwink/',
+  images: { unoptimized: true },
+  trailingSlash: true,
   },
 }
 
