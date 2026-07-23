@@ -2,7 +2,7 @@
 const nextConfig = {
   output: 'export',
   basePath: '/ai-fedarationTwink',
-  assetPrefix: '/ai-fedarationTwink/',
+  assetPrefix: '/ai-federationTwink/',
   images: { unoptimized: true },
   trailingSlash: true,
   },
