@@ -15,7 +15,8 @@ export default function Field({
   id,
   ...props 
 }: FieldProps) {
-  const fieldId = id || `field-${Math.random().toString(36).substr(2, 9)}`;
+  const generatedId = React.useId();
+  const fieldId = id || `field-${generatedId}`;
 
   return (
     <div className="w-full">

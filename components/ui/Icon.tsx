@@ -16,9 +16,9 @@ const iconPaths = {
 
 export default function Icon({ name, className, 'aria-hidden': ariaHidden = true }: IconProps) {
   return (
-    <svg 
-      className={className}
-      fill="none" 
+    <svg
+      className={className || 'w-6 h-6'}
+      fill="none"
       stroke="currentColor" 
       viewBox="0 0 24 24"
       aria-hidden={ariaHidden}

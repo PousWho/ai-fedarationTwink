@@ -7,8 +7,8 @@ const ElectricBorder = ({
   speed = 1,
   chaos = 0.12,
   borderRadius = 24,
-  className,
-  style
+  className = '',
+  style = {}
 }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
@@ -152,7 +152,9 @@ const ElectricBorder = ({
     const frequency = 10;
     const baseFlatness = 0;
     const displacement = 60;
-    const borderOffset = 60;
+    // Запас канваса вокруг элемента. Максимальное смещение линии ≈ displacement * fbm ≈ 24px;
+    // больший запас заставлял канвас вылезать за вьюпорт на мобильных и давал боковой скролл.
+    const borderOffset = 24;
 
     const updateSize = () => {
       const rect = container.getBoundingClientRect();

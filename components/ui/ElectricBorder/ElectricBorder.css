@@ -1,9 +1,16 @@
 .electric-border {
-  --electric-light-color: oklch(from var(--electric-border-color) l c h);
+  /* фолбэк для браузеров без relative color syntax (Safari < 16.4 и т.п.) */
+  --electric-light-color: var(--electric-border-color);
   position: relative;
   border-radius: inherit;
   overflow: visible;
   isolation: isolate;
+}
+
+@supports (color: oklch(from red l c h)) {
+  .electric-border {
+    --electric-light-color: oklch(from var(--electric-border-color) l c h);
+  }
 }
 
 .eb-canvas-container {
@@ -44,8 +51,16 @@
 }
 
 .eb-glow-1 {
-  border: 2px solid oklch(from var(--electric-border-color) l c h / 0.6);
+  border: 2px solid var(--electric-border-color);
+  opacity: 0.6;
   filter: blur(1px);
+}
+
+@supports (color: oklch(from red l c h)) {
+  .eb-glow-1 {
+    border-color: oklch(from var(--electric-border-color) l c h / 0.6);
+    opacity: 1;
+  }
 }
 
 .eb-glow-2 {

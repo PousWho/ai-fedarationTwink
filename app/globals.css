@@ -20,6 +20,15 @@
   }
 
 
+  /* Глушим горизонтальный overflow от декоративных элементов
+     (канвас ElectricBorder, стартовые translate-состояния scroll-анимаций).
+     clip не создаёт scroll-контейнер и не ломает sticky-хедер;
+     hidden — фолбэк для старых браузеров. */
+  html {
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
   body {
     @apply bg-white text-aimy-text-black font-guidy antialiased;
   }
@@ -84,7 +93,7 @@
 
 @layer components {
   .container-custom {
-    @apply max-w-[1440px] mx-auto px-6 md:px-[120px];
+    @apply max-w-[1440px] mx-auto px-6 md:px-10 lg:px-[60px] xl:px-[120px];
   }
 
   .section-padding {

@@ -48,7 +48,7 @@ export default function FeaturesSection() {
       id="features" 
       className="w-full relative"
     >
-      <div className="max-w-[1440px] mx-auto px-0 sm:px-4 md:px-[120px] py-12 sm:py-16 md:py-20">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-[60px] xl:px-[120px] py-12 sm:py-16 md:py-20">
         <div className={`px-4 sm:px-6 mb-8 sm:mb-12 md:mb-16 transition-all duration-1000 ease-out ${
           isVisible 
             ? 'opacity-100 translate-y-0' 

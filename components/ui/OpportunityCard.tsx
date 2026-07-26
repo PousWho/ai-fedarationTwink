@@ -8,19 +8,21 @@ interface OpportunityCardProps {
   description?: string;
   items?: readonly string[] | string[];
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export default function OpportunityCard({ 
-  icon, 
-  title, 
+export default function OpportunityCard({
+  icon,
+  title,
   description,
   items,
-  className 
+  className,
+  style
 }: OpportunityCardProps) {
   const displayItems = items || (description ? [description] : []);
 
   return (
-    <article className={cn('bg-transparent p-4 sm:p-6 w-full min-w-0', className)}>
+    <article className={cn('bg-transparent p-4 sm:p-6 w-full min-w-0', className)} style={style}>
       <div className="flex items-start gap-3 sm:gap-4 mb-3 min-w-0">
         {icon && (
           <div className="flex-shrink-0">
@@ -39,7 +41,7 @@ export default function OpportunityCard({
             </div>
           </div>
         )}
-        <h3 className="text-subheading text-aimy-accent font-bounded font-normal flex-1 break-words min-w-0">
+        <h3 className="text-[clamp(19px,0.6vw+15px,24px)] leading-[1.3] text-aimy-accent font-bounded font-normal flex-1 min-w-0">
           {title}
         </h3>
       </div>

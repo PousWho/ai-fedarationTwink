@@ -37,7 +37,7 @@ export default function CTASection() {
       id="cta" 
       className="w-full relative"
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-20">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-[60px] xl:px-[120px] py-20">
         <div className={`text-center mb-8 transition-all duration-1000 ease-out ${
           isVisible 
             ? 'opacity-100 translate-y-0 scale-100' 
@@ -53,7 +53,12 @@ export default function CTASection() {
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 translate-y-10'
         }`}>
-          <Button variant="primary" size="medium" className="rounded-[26px] text-aimy-text-white shadow-[0_4px_20px_rgba(255,255,255,0.3)]">
+          <Button
+            variant="primary"
+            size="medium"
+            className="rounded-[26px] text-aimy-text-white shadow-[0_4px_20px_rgba(255,255,255,0.3)]"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
             {t.cta.button}
           </Button>
         </div>

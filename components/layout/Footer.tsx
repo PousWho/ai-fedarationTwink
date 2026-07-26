@@ -10,9 +10,9 @@ export default function Footer() {
   const taglineLines = t.footer.tagline.split('\n');
 
   return (
-    <footer className="w-full relative overflow-x-hidden backdrop-blur-xl backdrop-saturate-150 bg-gradient-animated/70 border-t border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] rounded-t-3xl">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="w-full relative backdrop-blur-xl backdrop-saturate-150 bg-aimy-header-footer/60 border-t border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] rounded-t-3xl">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-[60px] xl:px-[120px] py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="col-span-1">
             <div className="mb-4">
               <Logo />
@@ -61,7 +61,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-small text-aimy-text-white hover:opacity-80 transition-opacity font-guidy">
+                <Link href="/privacy" className="text-small text-aimy-text-white hover:opacity-80 transition-opacity font-guidy">
                   {t.footer.legal2}
                 </Link>
               </li>

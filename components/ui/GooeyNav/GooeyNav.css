@@ -39,7 +39,7 @@
 
 .gooey-nav-container nav ul {
   display: flex;
-  gap: 1em;
+  gap: 0.5em;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -63,7 +63,7 @@
 
 .gooey-nav-container nav ul li a {
   display: inline-block;
-  padding: 0.4em 0.8em;
+  padding: 0.4em 0.6em;
   font-size: 0.875rem;
   font-family: 'Guidy', sans-serif;
   text-decoration: none;

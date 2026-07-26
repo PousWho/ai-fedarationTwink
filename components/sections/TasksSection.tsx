@@ -54,7 +54,7 @@ export default function TasksSection() {
       id="tasks" 
       className="w-full relative"
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-20">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-[60px] xl:px-[120px] py-20">
         <div className={`mb-16 transition-all duration-1000 ease-out ${
           isVisible 
             ? 'opacity-100 translate-y-0' 
@@ -73,8 +73,8 @@ export default function TasksSection() {
                     key={index}
                     className={`text-body text-aimy-text-white font-guidy list-disc list-outside pl-6 transition-all duration-700 ease-out ${
                       isVisible 
-                        ? 'opacity-100 translate-x-0' 
-                        : 'opacity-0 -translate-x-10'
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-6'
                     }`}
                     style={{
                       transitionDelay: isVisible ? `${question.delay}ms` : '0ms',
@@ -90,8 +90,8 @@ export default function TasksSection() {
                     key={index + 2}
                     className={`text-body text-aimy-text-white font-guidy list-disc list-outside pl-6 transition-all duration-700 ease-out ${
                       isVisible 
-                        ? 'opacity-100 translate-x-0' 
-                        : 'opacity-0 translate-x-10'
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-6'
                     }`}
                     style={{
                       transitionDelay: isVisible ? `${question.delay}ms` : '0ms',
@@ -114,7 +114,7 @@ export default function TasksSection() {
               }}
               role="presentation"
             >
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-2">
                 {panelItems.map((item, index) => (
                   <span 
                     key={index}
@@ -142,7 +142,12 @@ export default function TasksSection() {
           style={{
             transitionDelay: isVisible ? '1000ms' : '0ms',
           }}>
-            <Button variant="primary" size="medium" className="rounded-[26px] text-aimy-text-white shadow-[0_4px_20px_rgba(255,255,255,0.3)]">
+            <Button
+              variant="primary"
+              size="medium"
+              className="rounded-[26px] text-aimy-text-white shadow-[0_4px_20px_rgba(255,255,255,0.3)]"
+              onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               {t.tasks.button}
             </Button>
           </div>

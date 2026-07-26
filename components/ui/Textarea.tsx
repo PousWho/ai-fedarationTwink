@@ -15,7 +15,8 @@ export default function Textarea({
   id,
   ...props 
 }: TextareaProps) {
-  const fieldId = id || `textarea-${Math.random().toString(36).substr(2, 9)}`;
+  const generatedId = React.useId();
+  const fieldId = id || `textarea-${generatedId}`;
 
   return (
     <div className="w-full">

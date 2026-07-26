@@ -50,7 +50,7 @@ export default function FAQSection() {
       id="faq" 
       className="w-full relative"
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-20">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-[60px] xl:px-[120px] py-20">
         <div className={`mb-12 transition-all duration-1000 ease-out ${
           isVisible 
             ? 'opacity-100 translate-y-0' 

@@ -83,37 +83,37 @@ const config: Config = {
   		},
   		fontSize: {
   			heading: [
-  				'36px',
+  				'clamp(26px, 2.5vw + 16px, 36px)',
   				{
-  					lineHeight: 'normal',
+  					lineHeight: '1.25',
   					fontWeight: '400'
   				}
   			],
   			subheading: [
-  				'32px',
+  				'clamp(22px, 2vw + 14px, 32px)',
   				{
-  					lineHeight: '39.7px',
+  					lineHeight: '1.25',
   					fontWeight: '400'
   				}
   			],
   			body: [
-  				'24px',
+  				'clamp(18px, 1.5vw + 12px, 24px)',
   				{
-  					lineHeight: 'normal',
+  					lineHeight: '1.4',
   					fontWeight: '400'
   				}
   			],
   			text: [
-  				'20px',
+  				'clamp(16px, 1vw + 12px, 20px)',
   				{
-  					lineHeight: 'normal',
+  					lineHeight: '1.4',
   					fontWeight: '400'
   				}
   			],
   			small: [
-  				'16px',
+  				'clamp(14px, 0.5vw + 12px, 16px)',
   				{
-  					lineHeight: 'normal',
+  					lineHeight: '1.4',
   					fontWeight: '400'
   				}
   			]

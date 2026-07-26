@@ -46,7 +46,7 @@ export default function HowItWorksSection() {
       id="how-it-works" 
       className="w-full relative"
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-20">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-[60px] xl:px-[120px] py-20">
         <div className={`mb-16 transition-all duration-1000 ease-out ${
           isVisible 
             ? 'opacity-100 translate-y-0' 
@@ -84,11 +84,11 @@ export default function HowItWorksSection() {
             </div>
           ))}
         </div>
-        <div className="flex justify-center gap-6">
+        <div className="flex flex-col md:flex-row justify-center gap-6">
           {steps.slice(3, 5).map((step, index) => (
             <div
               key={step.number}
-              className={`transition-transform duration-700 ease-out ${
+              className={`w-full md:w-1/3 transition-transform duration-700 ease-out ${
                 isVisible 
                   ? 'translate-y-0 scale-100' 
                   : 'translate-y-10 scale-95'

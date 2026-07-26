@@ -84,6 +84,13 @@ export const translations = {
       step4: 'Формирование аналитики и рейтингов',
       step5: 'Использование отчётов и рекомендаций',
     },
+    customers: {
+      title: 'Кому мы можем помочь',
+      item1: 'Федеральные и региональные сети (образование, услуги, продажи)',
+      item2: 'Бизнесы с менеджерами клиентского сервиса',
+      item3: 'Компании с колл-центрами',
+      item4: 'Компании с филиальной структурой',
+    },
     pricing: {
       title: 'Стоимость',
       option1: 'Фиксированная ежемесячная подписка',
@@ -114,12 +121,14 @@ export const translations = {
       privacyText: ' и даю согласие на обработку персональных данных.',
       submit: 'Отправить',
       submitting: 'Отправка...',
+      success: 'Спасибо! Заявка отправлена — мы свяжемся с вами.',
+      error: 'Не удалось отправить заявку. Попробуйте ещё раз позже.',
     },
     footer: {
       tagline: 'Ваш надёжный партнёр в мире\nцифровой трансформации',
       social: 'Социальные сети',
       legal1: 'Информация о юр. лице ***',
-      legal2: 'Политика конфеденциальности',
+      legal2: 'Политика конфиденциальности',
     },
   },
   en: {
@@ -205,6 +214,13 @@ export const translations = {
       step4: 'Analytics and ratings generation',
       step5: 'Using reports and recommendations',
     },
+    customers: {
+      title: 'Who we can help',
+      item1: 'Federal and regional networks (education, services, sales)',
+      item2: 'Businesses with customer service managers',
+      item3: 'Companies with call centers',
+      item4: 'Companies with branch structure',
+    },
     pricing: {
       title: 'Pricing',
       option1: 'Fixed monthly subscription',
@@ -235,6 +251,8 @@ export const translations = {
       privacyText: ' and consent to personal data processing.',
       submit: 'Send',
       submitting: 'Sending...',
+      success: 'Thank you! Your request has been sent — we will contact you.',
+      error: 'Failed to send the request. Please try again later.',
     },
     footer: {
       tagline: 'Your reliable partner in\ndigital transformation',

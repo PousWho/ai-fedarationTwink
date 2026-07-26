@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const FuzzyText = ({
   children,
@@ -22,6 +22,27 @@ const FuzzyText = ({
   className = ''
 }) => {
   const canvasRef = useRef(null);
+  const [resizeTick, setResizeTick] = useState(0);
+
+  // clamp()/vw в fontSize вычисляются один раз при инициализации,
+  // поэтому при ресайзе/повороте экрана нужно переинициализировать canvas
+  useEffect(() => {
+    let timeoutId;
+    let lastWidth = window.innerWidth;
+    const handleResize = () => {
+      // реагируем только на смену ширины: на iOS сворачивание адресной строки
+      // меняет высоту окна и не должно перезапускать canvas
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => setResizeTick(v => v + 1), 200);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     let animationFrameId;
@@ -39,16 +60,6 @@ const FuzzyText = ({
       const computedFontFamily =
         fontFamily === 'inherit' ? window.getComputedStyle(canvas).fontFamily || 'sans-serif' : fontFamily;
 
-      const fontSizeStr = typeof fontSize === 'number' ? `${fontSize}px` : fontSize;
-      const fontString = `${fontWeight} ${fontSizeStr} ${computedFontFamily}`;
-
-      try {
-        await document.fonts.load(fontString);
-      } catch {
-        await document.fonts.ready;
-      }
-      if (isCancelled) return;
-
       let numericFontSize;
       if (typeof fontSize === 'number') {
         numericFontSize = fontSize;
@@ -60,6 +71,23 @@ const FuzzyText = ({
         numericFontSize = parseFloat(computedSize);
         document.body.removeChild(temp);
       }
+
+      // canvas ctx.font не понимает clamp()/vw (Safari молча откатывается на 10px),
+      // поэтому в строку шрифта всегда идёт вычисленное px-значение
+      const fontSizeStr = `${numericFontSize}px`;
+      const fontString = `${fontWeight} ${fontSizeStr} ${computedFontFamily}`;
+
+      try {
+        await document.fonts.load(fontString);
+        // load() может резолвиться пустым списком до того, как @font-face готов —
+        // тогда canvas отрисует фолбэк-шрифт; дожидаемся полной загрузки шрифтов
+        if (!document.fonts.check(fontString)) {
+          await document.fonts.ready;
+        }
+      } catch {
+        await document.fonts.ready;
+      }
+      if (isCancelled) return;
 
       const text = React.Children.toArray(children).join('');
 
@@ -252,9 +280,10 @@ const FuzzyText = ({
         }, 150);
       };
 
+      // ВАЖНО: без preventDefault — иначе палец, начавший скролл с текста,
+      // блокирует прокрутку страницы на touch-устройствах
       const handleTouchMove = e => {
         if (!enableHover) return;
-        e.preventDefault();
         const rect = canvas.getBoundingClientRect();
         const touch = e.touches[0];
         const x = touch.clientX - rect.left;
@@ -269,7 +298,7 @@ const FuzzyText = ({
       if (enableHover) {
         canvas.addEventListener('mousemove', handleMouseMove);
         canvas.addEventListener('mouseleave', handleMouseLeave);
-        canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+        canvas.addEventListener('touchmove', handleTouchMove, { passive: true });
         canvas.addEventListener('touchend', handleTouchEnd);
       }
 
@@ -326,7 +355,8 @@ const FuzzyText = ({
     glitchInterval,
     glitchDuration,
     gradient,
-    letterSpacing
+    letterSpacing,
+    resizeTick
   ]);
 
   return <canvas ref={canvasRef} className={className} />;

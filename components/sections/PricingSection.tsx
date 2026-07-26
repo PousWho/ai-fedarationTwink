@@ -38,7 +38,7 @@ export default function PricingSection() {
       id="pricing" 
       className="w-full relative"
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-[120px] py-20">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-[60px] xl:px-[120px] py-20">
         <div className={`mb-12 transition-all duration-1000 ease-out ${
           isVisible 
             ? 'opacity-100 translate-y-0' 
@@ -50,25 +50,25 @@ export default function PricingSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className={`transition-all duration-700 ease-out h-full flex ${
             isVisible 
-              ? 'opacity-100 translate-x-0 scale-100' 
-              : 'opacity-0 -translate-x-10 scale-95'
+              ? 'opacity-100 translate-y-0 scale-100' 
+              : 'opacity-0 translate-y-6 scale-95'
           }`}
           style={{
             transitionDelay: isVisible ? '200ms' : '0ms',
           }}>
-            <Button variant="secondary" size="large" className="w-full justify-center rounded-[26px] text-aimy-text-white h-full min-h-[80px]">
+            <Button variant="secondary" size="large" className="w-full justify-center rounded-[26px] text-aimy-text-white h-full min-h-[80px]" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
               {t.pricing.option1}
             </Button>
           </div>
           <div className={`transition-all duration-700 ease-out h-full flex ${
             isVisible 
-              ? 'opacity-100 translate-x-0 scale-100' 
-              : 'opacity-0 translate-x-10 scale-95'
+              ? 'opacity-100 translate-y-0 scale-100' 
+              : 'opacity-0 translate-y-6 scale-95'
           }`}
           style={{
             transitionDelay: isVisible ? '300ms' : '0ms',
           }}>
-            <Button variant="secondary" size="large" className="w-full justify-center rounded-[26px] text-aimy-text-white h-full min-h-[80px]">
+            <Button variant="secondary" size="large" className="w-full justify-center rounded-[26px] text-aimy-text-white h-full min-h-[80px]" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
               {t.pricing.option2}
             </Button>
           </div>
