@@ -3,22 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
-    font-family: 'Bounded';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('/fonts/Bounded-Regular.ttf') format('truetype');
-  }
-
-  @font-face {
-    font-family: 'Guidy';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('/fonts/Guidy.ttf') format('truetype');
-  }
-
+  /* Кастомные шрифты подключаются через next/font/local в app/layout.tsx
+     (переменные --font-bounded и --font-guidy) */
 
   /* Глушим горизонтальный overflow от декоративных элементов
      (канвас ElectricBorder, стартовые translate-состояния scroll-анимаций).

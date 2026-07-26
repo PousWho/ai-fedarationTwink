@@ -56,7 +56,7 @@ export default function HeroSection() {
                   <FuzzyText
                     fontSize="clamp(2rem, 8vw, 6rem)"
                     fontWeight={400}
-                    fontFamily="Bounded, sans-serif"
+                    fontFamily="inherit"
                     color="#FFFFFF"
                     baseIntensity={0.2}
                     hoverIntensity={0.5}

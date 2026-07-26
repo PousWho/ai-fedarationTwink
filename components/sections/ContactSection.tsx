@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import Field from '@/components/ui/Field';
 import Textarea from '@/components/ui/Textarea';
@@ -11,7 +12,7 @@ import { useLanguage } from '@/lib/LanguageContext';
 export default function ContactSection() {
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'success' | 'error' | 'demo'>('idle');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -25,6 +26,12 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Статический экспорт (GitHub Pages) — серверного /api/contact нет,
+    // честно сообщаем, что в демо форма не отправляется
+    if (process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true') {
+      setStatus('demo');
+      return;
+    }
     const form = e.currentTarget;
     const formData = new FormData(form);
     setIsSubmitting(true);
@@ -133,7 +140,7 @@ export default function ContactSection() {
                 required
               />
               <label htmlFor="privacy" className="text-small text-aimy-text-white font-guidy break-words">
-                {t.contact.privacy} <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">{t.contact.privacyLink}</a> {t.contact.privacyText}
+                {t.contact.privacy} <Link href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">{t.contact.privacyLink}</Link> {t.contact.privacyText}
               </label>
             </div>
             
@@ -149,6 +156,11 @@ export default function ContactSection() {
               {status === 'error' && (
                 <p className="mt-4 text-small text-aimy-error font-guidy" role="alert">
                   {t.contact.error}
+                </p>
+              )}
+              {status === 'demo' && (
+                <p className="mt-4 text-small text-aimy-accent font-guidy" role="status">
+                  {t.contact.demoNote}
                 </p>
               )}
             </div>

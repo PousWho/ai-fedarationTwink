@@ -24,7 +24,14 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      # API-роуты несовместимы со статическим экспортом (output: 'export') —
+      # для Pages-сборки убираем серверную часть, форма работает в демо-режиме
+      - run: rm -rf app/api
       - run: npm run build
+        env:
+          GITHUB_PAGES: 'true'
+          NEXT_PUBLIC_STATIC_EXPORT: 'true'
+          NEXT_PUBLIC_BASE_PATH: '/ai-fedarationTwink'
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -73,11 +73,11 @@ const config: Config = {
   		},
   		fontFamily: {
   			bounded: [
-  				'Bounded',
+  				'var(--font-bounded)',
   				'sans-serif'
   			],
   			guidy: [
-  				'Guidy',
+  				'var(--font-guidy)',
   				'sans-serif'
   			]
   		},

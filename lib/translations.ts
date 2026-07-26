@@ -123,6 +123,7 @@ export const translations = {
       submitting: 'Отправка...',
       success: 'Спасибо! Заявка отправлена — мы свяжемся с вами.',
       error: 'Не удалось отправить заявку. Попробуйте ещё раз позже.',
+      demoNote: 'Это демо-версия сайта: отправка формы не подключена.',
     },
     footer: {
       tagline: 'Ваш надёжный партнёр в мире\nцифровой трансформации',
@@ -253,6 +254,7 @@ export const translations = {
       submitting: 'Sending...',
       success: 'Thank you! Your request has been sent — we will contact you.',
       error: 'Failed to send the request. Please try again later.',
+      demoNote: 'This is a demo version of the site: form submission is not connected.',
     },
     footer: {
       tagline: 'Your reliable partner in\ndigital transformation',

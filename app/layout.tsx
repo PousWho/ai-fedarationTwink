@@ -1,6 +1,23 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/LanguageContext";
+
+// next/font сам хэширует файлы и учитывает basePath/assetPrefix —
+// прямые url('/fonts/...') в CSS ломались бы на GitHub Pages
+const bounded = localFont({
+  src: "../public/fonts/Bounded-Regular.ttf",
+  weight: "400",
+  display: "swap",
+  variable: "--font-bounded",
+});
+
+const guidy = localFont({
+  src: "../public/fonts/Guidy.ttf",
+  weight: "400",
+  display: "swap",
+  variable: "--font-guidy",
+});
 
 export const metadata: Metadata = {
   title: "Aimy - Платформа речевой аналитики",
@@ -31,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
+    <html lang="ru" className={`${bounded.variable} ${guidy.variable}`}>
       <body className="antialiased">
         <LanguageProvider>{children}</LanguageProvider>
       </body>
