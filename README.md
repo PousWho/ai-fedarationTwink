@@ -2,8 +2,8 @@
 
 ## Технологии
 
-- **Next.js 14** 
-- **React 18** 
+- **Next.js 16.4.3**
+- **React 19**
 - **TypeScript** 
 - **Tailwind CSS**  
 

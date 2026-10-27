@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useSyncExternalStore } from 'react';
 import { Language, translations } from './translations';
 
 interface LanguageContextType {
@@ -11,19 +11,21 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('ru');
+function subscribeToLanguage(onChange: () => void) {
+  window.addEventListener('storage', onChange);
+  return () => window.removeEventListener('storage', onChange);
+}
 
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('language') as Language;
-    if (savedLanguage && (savedLanguage === 'ru' || savedLanguage === 'en')) {
-      setLanguageState(savedLanguage);
-    }
-  }, []);
+function getLanguage(): Language {
+  return localStorage.getItem('language') === 'en' ? 'en' : 'ru';
+}
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const language = useSyncExternalStore(subscribeToLanguage, getLanguage, () => 'ru' as Language);
 
   const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
     localStorage.setItem('language', lang);
+    window.dispatchEvent(new StorageEvent('storage', { key: 'language', newValue: lang }));
   };
 
   return (
