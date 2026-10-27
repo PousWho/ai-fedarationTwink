@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, forwardRef, Component } from 'react';
+import { useRef, useEffect, useState, useSyncExternalStore, forwardRef, Component } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { EffectComposer, wrapEffect } from '@react-three/postprocessing';
 import { Effect } from 'postprocessing';
@@ -286,6 +286,10 @@ function supportsWebGL2() {
   }
 }
 
+let webGL2Support;
+const subscribeToWebGL2 = () => () => {};
+const getWebGL2Support = () => (webGL2Support ??= supportsWebGL2());
+
 export default function Dither({
   waveSpeed = 0.05,
   waveFrequency = 3,
@@ -297,11 +301,7 @@ export default function Dither({
   enableMouseInteraction = true,
   mouseRadius = 1
 }) {
-  const [canRender, setCanRender] = useState(false);
-
-  useEffect(() => {
-    setCanRender(supportsWebGL2());
-  }, []);
+  const canRender = useSyncExternalStore(subscribeToWebGL2, getWebGL2Support, () => false);
 
   if (!canRender) return null;
 
